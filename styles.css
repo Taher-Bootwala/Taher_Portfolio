@@ -818,6 +818,7 @@ section {
 }
 
 .view-more-btn {
+  margin-top: 10px;
   padding: 15px 40px;
   background: transparent;
   border: 2px solid var(--primary);
@@ -1258,3 +1259,4 @@ footer span {
     align-items: center;
   }
 }
+
