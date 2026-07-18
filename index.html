@@ -1,663 +1,1982 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taher Bootwala | Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taher Bootwala — Full-Stack Developer</title>
+  <meta name="description"
+    content="Portfolio of Taher Bootwala, full-stack developer specializing in React, Next.js and Supabase.">
+  <!--
+  EDITABLE / TO-CONFIRM FIELDS:
+  - Internship dates for Saifee Cyber and IBM SkillsBuild (marked [Add dates])
+  - Per-project repository links currently point to your GitHub repositories tab —
+    swap in exact repo URLs if you'd like each project linked individually.
+  - "Resume" button in the Contact section links to Taher_Bootwala_Resume_Revised.pdf,
+    which is included alongside this file — keep them in the same folder.
+-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      /* deep charcoal ledger palette */
+      --paper: #14120D;
+      --paper-dark: #1D1A13;
+      --paper-deep: #2A2015;
+      --ink: #ECE4CF;
+      --ink-soft: #B6AC93;
+      --ink-faint: #A3987D;
+      --teal: #6FBBA0;
+      --teal-mid: #2E6657;
+      --teal-dark: #1B3A32;
+      --brass: #C9973F;
+      --brass-light: #EFC373;
+      --rust: #DD7E5C;
+      --line: rgba(236, 228, 207, 0.10);
+      --line-strong: rgba(236, 228, 207, 0.20);
+      --shadow: rgba(0, 0, 0, 0.55);
+      --radius: 3px;
+      --serif: "Fraunces", "Iowan Old Style", serif;
+      --sans: "IBM Plex Sans", -apple-system, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: auto;
+      /* JS handles smooth scroll */
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse 120% 60% at 50% -10%, var(--paper-dark), transparent 60%),
+        var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+
+    /* tactile grain overlay — brushed leather/metal, not paper */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.5;
+      mix-blend-mode: screen;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      /* PERF: promote to own GPU layer so mix-blend-mode doesn't force re-composite on scroll */
+      will-change: transform;
+      transform: translateZ(0);
+    }
+
+    ::selection {
+      background: var(--brass-light);
+      color: #20180B;
+    }
+
+    /* keyboard focus indicators */
+    *:focus {
+      outline: 2px solid var(--teal);
+      outline-offset: 3px;
+    }
+
+    *:focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    *:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 3px;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--serif);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin: 0;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 0.6em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 18px;
+      height: 1px;
+      background: var(--brass);
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 48px);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* stitched binding — copper thread on a dark ledger spine */
+    .binding {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 26px;
+      z-index: 5;
+      pointer-events: none;
+      display: flex;
+      justify-content: center;
+    }
+
+    .binding svg {
+      height: 100%;
+      width: 100%;
+    }
+
+    @media (max-width:820px) {
+      .binding {
+        display: none;
+      }
+
+      .wrap {
+        padding: 0 20px;
+      }
+    }
+
+    /* ---------- NAV ---------- */
+    header.site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      padding-left: 26px;
+      overflow: hidden;
+      /* contain the galaxy canvas background */
+    }
+
+    @media (max-width:820px) {
+      header.site-nav {
+        padding-left: 0;
+      }
+    }
+
+    .nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px clamp(20px, 5vw, 48px);
+      /* PERF: only transition properties that actually change; promote to GPU layer */
+      transition: background-color 0.3s ease, border-bottom-color 0.3s ease;
+      border-bottom: 1px solid transparent;
+      will-change: transform;
+      transform: translateZ(0);
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-inner.scrolled {
+      background: rgba(20, 18, 13, 0.86);
+      backdrop-filter: blur(6px);
+      border-bottom-color: var(--line);
+    }
+
+    .brand {
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: 1.08rem;
+      /* Increased from 0.95rem */
+      color: var(--ink);
+      /* Explicitly set to warm white */
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brass-light), var(--rust));
+    }
+
+    nav.links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav.links a {
+      font-family: var(--mono);
+      font-size: 0.92rem;
+      /* Increased from 0.78rem */
+      text-decoration: none;
+      color: var(--ink);
+      /* Changed from var(--ink-soft) to var(--ink) for high contrast */
+      letter-spacing: 0.03em;
+      position: relative;
+      padding-bottom: 3px;
+      white-space: nowrap;
+      transition: color 0.25s ease;
+      /* smooth hover color transition */
+    }
+
+    nav.links a:hover {
+      color: var(--brass-light);
+      /* transitions to warm gold on hover */
+    }
+
+    nav.links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: 0;
+      height: 1px;
+      background: var(--rust);
+      transition: right 0.25s ease;
+    }
+
+    nav.links a:hover::after {
+      right: 0;
+    }
+
+    /* mobile menu toggle */
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      padding: 8px 10px;
+      cursor: pointer;
+      color: var(--ink);
+      transition: background 0.2s ease;
+    }
+
+    .menu-toggle:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .menu-toggle svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+    }
+
+    @media (max-width:760px) {
+      nav.links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 280px;
+        max-width: 85vw;
+        flex-direction: column;
+        background: rgba(20, 18, 13, 0.98);
+        backdrop-filter: blur(12px);
+        padding: 80px 32px 32px;
+        gap: 8px;
+        border-left: 1px solid var(--line);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 100;
+      }
+
+      nav.links.is-open {
+        transform: translateX(0);
+      }
+
+      nav.links a {
+        font-size: 1.15rem;
+        /* Increased from 0.95rem */
+        padding: 12px 0;
+        border-bottom: 1px solid var(--line);
+        color: var(--ink);
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* ---------- HERO ---------- */
+    section.hero {
+      padding: 168px 0 96px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* galaxy canvas */
+    #galaxyCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      /* behind all content */
+      pointer-events: none;
+      /* fade bottom edge so content below blends cleanly */
+      -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+      /* PERF: hardware accelerate scroll scaling/opacity */
+      will-change: transform, opacity;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    @media (max-width:900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 6vw, 4.4rem);
+      line-height: 0.98;
+      margin: 18px 0 8px;
+    }
+
+    .hero .role {
+      font-family: var(--mono);
+      font-size: 1.05rem;
+      color: var(--teal);
+      margin-bottom: 22px;
+    }
+
+    .hero p.bio {
+      max-width: 48ch;
+      color: var(--ink-soft);
+      font-size: 1.02rem;
+    }
+
+    .seal {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      margin-top: 34px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      letter-spacing: 0.03em;
+      padding: 13px 22px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line-strong);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--teal-mid), var(--teal-dark));
+      color: #F3EEDD;
+      border-color: transparent;
+      box-shadow: 0 6px 18px -8px rgba(0, 0, 0, 0.6);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    /* terminal card */
+    .terminal {
+      background: #1B1811;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 24px 48px -20px var(--shadow), 0 2px 0 rgba(255, 255, 255, 0.03) inset;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .terminal-bar {
+      background: linear-gradient(135deg, #2C3F38, #1E2E28);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .terminal-bar span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .terminal-bar span:nth-child(1) {
+      background: #C0684F;
+    }
+
+    .terminal-bar span:nth-child(2) {
+      background: var(--brass-light);
+    }
+
+    .terminal-bar span:nth-child(3) {
+      background: #7FA089;
+    }
+
+    .terminal-body {
+      padding: 22px 20px 26px;
+      font-family: var(--mono);
+      font-size: 0.86rem;
+      color: #E4DCC6;
+      overflow-x: auto;
+    }
+
+    .terminal-body .line {
+      margin-bottom: 14px;
+      white-space: nowrap;
+    }
+
+    @media (max-width:480px) {
+      .terminal-body {
+        font-size: 0.78rem;
+        padding: 18px 16px 22px;
+      }
+    }
+
+    .terminal-body .prompt {
+      color: #8FBFA6;
+    }
+
+    .terminal-body .out {
+      color: #B9AE8E;
+      padding-left: 1.2em;
+      display: block;
+      margin-top: 3px;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 7px;
+      height: 1.1em;
+      background: var(--brass-light);
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* ---------- SECTION HEADERS ---------- */
+    section {
+      padding: 88px 0;
+      position: relative;
+    }
+
+    .section-head {
+      margin-bottom: 52px;
+      max-width: 60ch;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+      margin-top: 12px;
+    }
+
+    .grommet {
+      position: absolute;
+      left: -26px;
+      top: 96px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, var(--brass-light), var(--brass));
+      box-shadow: 0 1px 2px var(--shadow);
+      display: none;
+    }
+
+    @media (min-width:821px) {
+      .grommet {
+        display: block;
+      }
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 52px;
+      align-items: start;
+    }
+
+    @media (max-width:820px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .mark {
+      width: 100%;
+      aspect-ratio: 1;
+      max-width: 280px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 36px;
+    }
+
+    @media (max-width:560px) {
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .stamp {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .stamp .num {
+      font-family: var(--serif);
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--rust);
+      display: block;
+    }
+
+    .stamp .label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ---------- SKILLS ---------- */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    @media (max-width:720px) {
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width:460px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .skill-cell {
+      background: var(--paper);
+      padding: 28px 22px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: background 0.25s ease;
+    }
+
+    .skill-cell:hover {
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .skill-icon {
+      flex: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(150deg, rgba(111, 187, 160, 0.18), rgba(111, 187, 160, 0));
+      border: 1px solid var(--line);
+      color: var(--teal);
+    }
+
+    .skill-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .skill-cell h3 {
+      font-size: 0.98rem;
+      font-family: var(--sans);
+      font-weight: 600;
+    }
+
+    .skill-cell p {
+      margin: 4px 0 0;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+    }
+
+    /* ---------- PROJECTS (ledger) ---------- */
+    .ledger {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .entry {
+      position: relative;
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 24px;
+      padding: 34px 28px 34px 8px;
+      border-top: 1px solid var(--line);
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .entry.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .entry:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .entry-num {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--brass);
+      padding-top: 4px;
+    }
+
+    .entry-main {
+      position: relative;
+    }
+
+    .entry-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .entry h3 {
+      font-size: 1.3rem;
+      font-family: var(--serif);
+    }
+
+    .entry-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 4px 9px;
+      border-radius: 20px;
+      border: 1px solid var(--line-strong);
+      color: var(--ink-soft);
+    }
+
+    .entry p {
+      color: var(--ink-soft);
+      max-width: 62ch;
+      margin: 10px 0 14px;
+      font-size: 0.95rem;
+    }
+
+    .entry-links {
+      display: flex;
+      gap: 18px;
+    }
+
+    .entry-links a {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--teal);
+    }
+
+    .entry-links a svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .entry-links a:hover {
+      color: var(--rust);
+    }
+
+    .ledger-footnote {
+      margin-top: 26px;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+    }
+
+    .ledger-footnote a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    .ledger-footnote a:hover {
+      color: var(--rust);
+    }
+
+    /* fold corner accent */
+    .entry::before {
+      content: "";
+      position: absolute;
+      top: 34px;
+      right: 28px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 0 14px 14px;
+      border-color: transparent transparent rgba(227, 178, 94, 0.18) transparent;
+      /* PERF: removed filter:drop-shadow — software-rasterized, imperceptible on 14px triangle */
+    }
+
+    /* ---------- EXPERIENCE (stitched timeline) ---------- */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 6px;
+      bottom: 6px;
+      width: 1px;
+      background-image: linear-gradient(var(--line-strong) 60%, transparent 0%);
+      background-size: 1px 10px;
+      background-repeat: repeat-y;
+    }
+
+    .tl-item {
+      position: relative;
+      padding-bottom: 44px;
+    }
+
+    .tl-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .tl-item::before {
+      content: "";
+      position: absolute;
+      left: -28px;
+      top: 4px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, var(--brass-light), var(--brass));
+      border: 2px solid var(--paper);
+      box-shadow: 0 0 0 1px var(--line-strong);
+    }
+
+    .tl-head {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .tl-head h3 {
+      font-size: 1.1rem;
+    }
+
+    .tl-when {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+    }
+
+    .tl-item p {
+      color: var(--ink-soft);
+      max-width: 60ch;
+      font-size: 0.94rem;
+      margin: 0;
+    }
+
+    /* ---------- CREDENTIALS ---------- */
+    .credentials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    @media (max-width:820px) {
+      .credentials-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+    }
+
+    .credentials-grid h3 {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .credential-item {
+      display: flex;
+      gap: 16px;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .credential-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .cred-icon {
+      flex: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(150deg, rgba(201, 151, 63, 0.18), rgba(201, 151, 63, 0));
+      border: 1px solid var(--line);
+      color: var(--brass);
+    }
+
+    .cred-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .credential-item h4 {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin: 0 0 3px;
+    }
+
+    .credential-item p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact-panel {
+      background: linear-gradient(155deg, var(--teal-dark), var(--teal-mid));
+      color: #F1ECDA;
+      border-radius: 10px;
+      padding: clamp(36px, 6vw, 64px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 85% 15%, rgba(227, 178, 94, 0.16), transparent 55%);
+      pointer-events: none;
+    }
+
+    .contact-panel h2 {
+      color: #F6F1E1;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      max-width: 18ch;
+    }
+
+    .contact-panel p {
+      color: #CFDBD3;
+      max-width: 48ch;
+      margin-top: 14px;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: #F1ECDA;
+      text-decoration: none;
+      border: 1px solid rgba(241, 236, 218, 0.28);
+      padding: 12px 18px;
+      border-radius: var(--radius);
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .contact-links a:hover {
+      background: rgba(241, 236, 218, 0.1);
+      border-color: rgba(241, 236, 218, 0.6);
+    }
+
+    .contact-links svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    footer {
+      padding: 36px 0 60px;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    footer a {
+      color: var(--ink-faint);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--teal);
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="bg-animation" id="bgAnimation"></div>
 
-    <nav id="navbar">
-        <div class="logo">Taher Bootwala</div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#home" onclick="closeMenu()">Home</a></li>
-            <li><a href="#about" onclick="closeMenu()">About</a></li>
-            <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
-            <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
-            <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
-            <li><a href="#education" onclick="closeMenu()">Education</a></li>
-            <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
-        </ul>
-        <div class="menu-btn" id="menuBtn" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </nav>
+  <canvas id="galaxyCanvas" aria-hidden="true"></canvas>
 
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <p class="hero-greeting">Hello, I'm</p>
-            <h1 class="hero-name">Taher <span>Bootwala</span></h1>
-            <p class="hero-title"><span class="typewriter" id="typewriter"></span></p>
-            <p class="hero-description">
-                A passionate Computer Engineering graduate with hands-on experience in web development, 
-                machine learning, and building real-world applications. Ready to create innovative solutions 
-                that make a difference.
-            </p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">
-                    <i class="fas fa-eye"></i> View My Work
-                </a>
-                <a href="#contact" class="btn btn-secondary">
-                    <i class="fas fa-paper-plane"></i> Get In Touch
-                </a>
-            </div>
-            <div class="hero-socials">
-                <a href="https://github.com/Taher-Bootwala?tab=repositories" target="_blank" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                </a>
-                <a href="https://www.linkedin.com/in/taher-bootwala-048b8b309/" target="_blank" title="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="mailto:bootwalataher2@gmail.com" title="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>
+  <div class="binding" aria-hidden="true">
+    <svg viewBox="0 0 26 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="13" y1="0" x2="13" y2="800" stroke="rgba(236,228,207,0.16)" stroke-width="1" stroke-dasharray="2 7" />
+    </svg>
+  </div>
+
+  <header class="site-nav">
+    <div class="nav-inner" id="navInner">
+      <div class="brand"><span class="dot"></span>taher.bootwala</div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="M3 6h18M3 12h18M3 18h18" />
+        </svg>
+      </button>
+      <nav class="links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#credentials">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Class of 2026 — full-stack log</div>
+          <h1>Taher<br>Bootwala</h1>
+          <div class="role">Full-Stack Developer — React · Next.js · Supabase</div>
+          <p class="bio" style="color: white;">I build production-ready web apps with React, Next.js, and Supabase — and
+            the backend systems,
+            Django, PHP, REST APIs, that keep them running. Currently finishing a Diploma in Computer Engineering while
+            shipping real projects on the side.</p>
+
+          <div class="seal">
+            <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="23" cy="23" r="21" fill="url(#sealGrad)" />
+              <circle cx="23" cy="23" r="21" stroke="rgba(0,0,0,0.25)" stroke-width="1" />
+              <text x="23" y="28" text-anchor="middle" font-family="Fraunces, serif" font-size="15" font-weight="700"
+                fill="#241a0c">TB</text>
+              <defs>
+                <linearGradient id="sealGrad" x1="0" y1="0" x2="46" y2="46" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#EFC373" />
+                  <stop offset="1" stop-color="#DD7E5C" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <span style="font-family:var(--mono); font-size:0.78rem; color:var(--ink-faint);">Based in Dahod, Gujarat ·
+              open to full-time &amp; internship roles</span>
+          </div>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#work">
+              View the work
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
+            <a class="btn btn-ghost" href="#contact">
+              Get in touch
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <path d="M4 6h16v12H4z" />
+                <path d="M4 7l8 6 8-6" />
+              </svg>
+            </a>
+          </div>
         </div>
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
+
+        <div class="terminal" data-reveal>
+          <div class="terminal-bar"><span></span><span></span><span></span></div>
+          <div class="terminal-body">
+            <div class="line"><span class="prompt">$</span> whoami<span class="out">taher-bootwala — full-stack
+                developer</span></div>
+            <div class="line"><span class="prompt">$</span> cat focus.txt<span class="out">React · Next.js · Supabase ·
+                Django</span></div>
+            <div class="line"><span class="prompt">$</span> cat education.txt<span class="out">Diploma, Computer
+                Engineering — CGPA 8.29/10, 2026</span></div>
+            <div class="line"><span class="prompt">$</span> <span class="cursor"></span></div>
+          </div>
         </div>
+      </div>
     </section>
 
+    <!-- ============ ABOUT ============ -->
     <section id="about">
-        <div class="section-header reveal">
-            <p class="section-subtitle">Get To Know</p>
-            <h2 class="section-title">About <span>Me</span></h2>
+      <span class="grommet"></span>
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">About</div>
+        <h2>A diploma engineer who ships before graduating.</h2>
+      </div>
+      <div class="about-grid">
+        <div data-reveal>
+          <svg class="mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="markGrad" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6FBBA0" />
+                <stop offset="1" stop-color="#1B3A32" />
+              </linearGradient>
+            </defs>
+            <rect x="14" y="14" width="172" height="172" rx="6" fill="none" stroke="var(--line-strong)"
+              stroke-width="1" />
+            <path d="M46 130 L46 70 L100 40 L154 70 L154 130" fill="none" stroke="url(#markGrad)" stroke-width="4"
+              stroke-linejoin="round" stroke-linecap="round" />
+            <circle cx="100" cy="104" r="16" fill="none" stroke="#C9973F" stroke-width="3" />
+            <path d="M70 158 h60" stroke="#DD7E5C" stroke-width="3" stroke-linecap="round" />
+          </svg>
         </div>
-        <div class="about-content">
-            <div class="about-image reveal">
-                <div class="about-image-wrapper">
-                    <div class="about-image-inner">
-                        <img src="profile.jpg" alt="Taher Bootwala" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
-                    </div>
-                    <div class="floating-icons">
-                        <i class="fab fa-js" style="color: #f7df1e;"></i>
-                    </div>
-                    <div class="floating-icons">
-                        <i class="fab fa-python" style="color: #3776ab;"></i>
-                    </div>
-                    <div class="floating-icons">
-                        <i class="fab fa-java" style="color: #ed8b00;"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="about-text reveal">
-                <h3>A Dedicated Developer Based in Dahod, India</h3>
-                <p>
-                    I'm a Computer Engineering Diploma graduate from Government Polytechnic College, Dahod, 
-                    with a strong foundation in programming and software development. My journey in tech has 
-                    equipped me with diverse skills ranging from front-end web development to machine learning.
-                </p>
-                <p>
-                    Having completed internships at IBM Skills Build and Saifee Cyber, I've gained valuable 
-                    real-world experience in building dynamic web applications, API integration, and backend 
-                    development with Python and Django.
-                </p>
-                <div class="about-info">
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div class="info-content">
-                            <span>Location</span>
-                            <center><p>Dahod, Gujarat, India</p></center>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="info-item">
-                        <i class="fas fa-graduation-cap"></i>
-                        <div class="info-content">
-                            <span>Degree</span>
-                            <center><p>Diploma in Computer Eng.</p></center>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <div class="info-content">
-                            <span>Email</span>
-                            <center><p>bootwalataher2@gmail.com</p></center>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="info-item">
-                        <i class="fas fa-phone"></i>
-                        <div class="info-content">
-                            <span>Phone</span>
-                            <center><p>+91 94845 14813</p></center>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div data-reveal>
+          <p>I'm a full-stack developer finishing a Diploma in Computer Engineering (CGPA 8.29/10) at Government
+            Polytechnic, Dahod, expected 2026. Most of my work lives at the intersection of React and Next.js front ends
+            with Supabase or Django-backed data models — real, production-oriented apps rather than class assignments.
+          </p>
+          <p>Outside coursework, I've shipped an AI-powered asset tracker, an accessibility-first donation platform for
+            a local nonprofit, and a subscription exam-prep tool used by fellow students — alongside two internships in
+            Django backend and front-end development.</p>
+          <div class="stats">
+            <div class="stamp"><span class="num">05</span><span class="label">Projects shipped</span></div>
+            <div class="stamp"><span class="num">02</span><span class="label">Internships</span></div>
+            <div class="stamp"><span class="num">8.29</span><span class="label">CGPA / 10</span></div>
+          </div>
         </div>
+      </div>
     </section>
 
+    <!-- ============ SKILLS ============ -->
     <section id="skills">
-        <div class="section-header reveal">
-            <p class="section-subtitle">What I Know</p>
-            <h2 class="section-title">Technical <span>Skills</span></h2>
+      <span class="grommet"></span>
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">Toolkit</div>
+        <h2>What I reach for, and why.</h2>
+      </div>
+      <div class="skills-grid" data-reveal>
+        <div class="skill-cell">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M8 6L2 12l6 6" />
+              <path d="M16 6l6 6-6 6" />
+            </svg>
+          </div>
+          <div>
+            <h3>Languages</h3>
+            <p>Python, Java, C, C++, JavaScript, SQL.</p>
+          </div>
         </div>
-        <div class="skills-container">
-            <div class="skill-category reveal">
-                <h3><i class="fas fa-code"></i> Programming Languages</h3>
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span>Python</span>
-                        <span>85%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="85"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span>JavaScript</span>
-                        <span>80%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="80"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span>Java</span>
-                        <span>75%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="75"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span>C/C++</span>
-                        <span>70%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="70"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span>PHP & SQL</span>
-                        <span>65%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="65"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="skill-category reveal">
-                <h3><i class="fas fa-laptop-code"></i> Web Development</h3>
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span>HTML & CSS</span>
-                        <span>90%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="90"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span>Bootstrap</span>
-                        <span>80%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="80"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span>Django</span>
-                        <span>30%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="65"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-info">
-                        <span>Git Version Control</span>
-                        <span>75%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="75"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="skill-category reveal">
-                <h3><i class="fas fa-tools"></i> Tools & Others</h3>
-                <div class="tech-tags">
-                    <span class="tech-tag">VS Code</span>
-                    <span class="tech-tag">Android Studio</span>
-                    <span class="tech-tag">Firebase</span>
-                    <span class="tech-tag">MS Office</span>
-                    <span class="tech-tag">DSA</span>
-                    <span class="tech-tag">OOPs</span>
-                    <span class="tech-tag">DBMS</span>
-                    <span class="tech-tag">API Integration</span>
-                    <span class="tech-tag">Machine Learning</span>
-                    <span class="tech-tag">Responsive Design</span>
-                </div>
-                <h3 style="margin-top: 25px;"><i class="fas fa-handshake"></i> Soft Skills</h3>
-                <div class="tech-tags">
-                    <span class="tech-tag">Adaptability</span>
-                    <span class="tech-tag">Multitasking</span>
-                    <span class="tech-tag">Team Collaboration</span>
-                    <span class="tech-tag">Problem Solving</span>
-                    <span class="tech-tag">Quick Learner</span>
-                </div>
-            </div>
+        <div class="skill-cell">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="16" rx="2" />
+              <path d="M3 9h18" />
+              <circle cx="6.5" cy="6.5" r="0.6" fill="currentColor" stroke="none" />
+            </svg>
+          </div>
+          <div>
+            <h3>Frontend</h3>
+            <p>React.js, Next.js, Tailwind CSS, Bootstrap, Flutter.</p>
+          </div>
         </div>
+        <div class="skill-cell">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M7 7h10l-3-3" />
+              <path d="M7 7l0 0" />
+              <path d="M17 17H7l3 3" />
+            </svg>
+          </div>
+          <div>
+            <h3>Backend &amp; APIs</h3>
+            <p>Django, PHP, Firebase, Supabase, REST API design.</p>
+          </div>
+        </div>
+        <div class="skill-cell">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+              stroke-linejoin="round">
+              <ellipse cx="12" cy="6" rx="7" ry="3" />
+              <path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6" />
+              <path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3" />
+            </svg>
+          </div>
+          <div>
+            <h3>Databases</h3>
+            <p>PostgreSQL, MongoDB, Firebase Firestore, SQL &amp; NoSQL.</p>
+          </div>
+        </div>
+        <div class="skill-cell">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="6" cy="6" r="2.4" />
+              <circle cx="6" cy="18" r="2.4" />
+              <circle cx="18" cy="12" r="2.4" />
+              <path d="M6 8.4V15.6M8 6.8l7.5 3.7M8 17.2l7.5-3.7" />
+            </svg>
+          </div>
+          <div>
+            <h3>Tools</h3>
+            <p>Git, GitHub, VS Code, Android Studio, Postman, Figma.</p>
+          </div>
+        </div>
+        <div class="skill-cell">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="4" y="4" width="16" height="16" rx="2" />
+              <path d="M8 12l2.5 2.5L16 9" />
+            </svg>
+          </div>
+          <div>
+            <h3>Practices</h3>
+            <p>Unit testing, Agile workflows, code review, version control.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
+    <!-- ============ PROJECTS ============ -->
+    <section id="work">
+      <span class="grommet"></span>
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">Ledger</div>
+        <h2>A running record of things I've shipped.</h2>
+      </div>
+      <div class="ledger">
+
+        <div class="entry" data-reveal>
+          <div class="entry-num">01</div>
+          <div class="entry-main">
+            <div class="entry-top">
+              <h3>AssetFlow</h3>
+              <div class="entry-tags"><span class="tag">Next.js</span><span class="tag">React</span><span
+                  class="tag">Supabase</span><span class="tag">AI APIs</span></div>
+            </div>
+            <p>An AI-powered asset management platform built for the Odoo Hackathon — QR-code scanning for real-time
+              updates and an analytics dashboard for admin oversight, cutting down manual inventory tracking.</p>
+            <div class="entry-links">
+              <a href="https://github.com/Taher-Bootwala?tab=repositories" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9c0-1.1.4-1.8 1-2.3-3.3-.4-6.8-1.6-6.8-7.3 0-1.6.6-3 1.5-4-.2-.4-.7-2 .1-4 0 0 1.3-.4 4.2 1.5a14.7 14.7 0 018 0c2.9-2 4.2-1.5 4.2-1.5.8 2 .3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.7-3.5 6.9-6.8 7.3.5.5 1 1.3 1 2.7V21"
+                    transform="translate(-2 0) scale(0.83)" />
+                </svg> Repository
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="entry" data-reveal>
+          <div class="entry-num">02</div>
+          <div class="entry-main">
+            <div class="entry-top">
+              <h3>NAB Dahod</h3>
+              <div class="entry-tags"><span class="tag">PHP</span><span class="tag">Supabase</span><span
+                  class="tag">PostgreSQL</span><span class="tag">Tailwind</span></div>
+            </div>
+            <p>A WCAG-aligned donation and CMS platform for the National Association for the Blind, Dahod — giving
+              donors and admins a secure, screen-reader-friendly way to manage contributions and content.</p>
+            <div class="entry-links">
+              <a href="https://github.com/Taher-Bootwala?tab=repositories" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9c0-1.1.4-1.8 1-2.3-3.3-.4-6.8-1.6-6.8-7.3 0-1.6.6-3 1.5-4-.2-.4-.7-2 .1-4 0 0 1.3-.4 4.2 1.5a14.7 14.7 0 018 0c2.9-2 4.2-1.5 4.2-1.5.8 2 .3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.7-3.5 6.9-6.8 7.3.5.5 1 1.3 1 2.7V21"
+                    transform="translate(-2 0) scale(0.83)" />
+                </svg> Repository
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="entry" data-reveal>
+          <div class="entry-num">03</div>
+          <div class="entry-main">
+            <div class="entry-top">
+              <h3>DDCET Prep</h3>
+              <div class="entry-tags"><span class="tag">TypeScript</span><span class="tag">Supabase</span><span
+                  class="tag">PostgreSQL</span></div>
+            </div>
+            <p>A subscription-based prep platform for D2D entrance exam students — streak tracking, leaderboards, a
+              college predictor, and subject-wise mock tests.</p>
+            <div class="entry-links">
+              <a href="https://github.com/Taher-Bootwala?tab=repositories" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9c0-1.1.4-1.8 1-2.3-3.3-.4-6.8-1.6-6.8-7.3 0-1.6.6-3 1.5-4-.2-.4-.7-2 .1-4 0 0 1.3-.4 4.2 1.5a14.7 14.7 0 018 0c2.9-2 4.2-1.5 4.2-1.5.8 2 .3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.7-3.5 6.9-6.8 7.3.5.5 1 1.3 1 2.7V21"
+                    transform="translate(-2 0) scale(0.83)" />
+                </svg> Repository
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="entry" data-reveal>
+          <div class="entry-num">04</div>
+          <div class="entry-main">
+            <div class="entry-top">
+              <h3>Salary Prediction System</h3>
+              <div class="entry-tags"><span class="tag">Python</span><span class="tag">Streamlit</span><span
+                  class="tag">ML</span></div>
+            </div>
+            <p>A machine learning model that predicts salaries from user-input features, deployed through an interactive
+              Streamlit interface.</p>
+            <div class="entry-links">
+              <a href="https://github.com/Taher-Bootwala?tab=repositories" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9c0-1.1.4-1.8 1-2.3-3.3-.4-6.8-1.6-6.8-7.3 0-1.6.6-3 1.5-4-.2-.4-.7-2 .1-4 0 0 1.3-.4 4.2 1.5a14.7 14.7 0 018 0c2.9-2 4.2-1.5 4.2-1.5.8 2 .3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.7-3.5 6.9-6.8 7.3.5.5 1 1.3 1 2.7V21"
+                    transform="translate(-2 0) scale(0.83)" />
+                </svg> Repository
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="entry" data-reveal>
+          <div class="entry-num">05</div>
+          <div class="entry-main">
+            <div class="entry-top">
+              <h3>News Aggregator</h3>
+              <div class="entry-tags"><span class="tag">JavaScript</span><span class="tag">NewsAPI</span></div>
+            </div>
+            <p>A responsive news portal pulling live articles via NewsAPI, with category filtering and search to help
+              readers find relevant stories faster.</p>
+            <div class="entry-links">
+              <a href="https://github.com/Taher-Bootwala?tab=repositories" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9c0-1.1.4-1.8 1-2.3-3.3-.4-6.8-1.6-6.8-7.3 0-1.6.6-3 1.5-4-.2-.4-.7-2 .1-4 0 0 1.3-.4 4.2 1.5a14.7 14.7 0 018 0c2.9-2 4.2-1.5 4.2-1.5.8 2 .3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.7-3.5 6.9-6.8 7.3.5.5 1 1.3 1 2.7V21"
+                    transform="translate(-2 0) scale(0.83)" />
+                </svg> Repository
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <p class="ledger-footnote">More projects and full source on <a href="https://github.com/Taher-Bootwala"
+          target="_blank" rel="noopener">github.com/Taher-Bootwala</a>.</p>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
     <section id="experience">
-        <div class="section-header reveal">
-            <p class="section-subtitle">My Journey</p>
-            <h2 class="section-title">Work <span>Experience</span></h2>
+      <span class="grommet"></span>
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">Experience</div>
+        <h2>Where I've done the work.</h2>
+      </div>
+      <div class="timeline" data-reveal>
+        <div class="tl-item">
+          <div class="tl-head">
+            <h3>Python &amp; Django Backend Intern, Saifee Cyber</h3><span class="tl-when">[Add dates]</span>
+          </div>
+          <p>Built and deployed REST API endpoints for a Django-based web application, integrating Python backend logic
+            with a relational database. Refactored backend logic and optimized queries to improve response times, and
+            wrote unit tests to raise reliability across core modules.</p>
         </div>
-        <div class="timeline">
-            <div class="timeline-item reveal">
-                <div class="timeline-content">
-                    <div class="timeline-dot"></div>
-                    <h3>IBM Skills Build</h3>
-                    <h4>Front-End Developer Intern</h4>
-                    <span class="date">June 2024 - August 2024</span>
-                    <ul>
-                        <li>Developed a dynamic news website using HTML, CSS, and JavaScript with real-time NewsAPI integration</li>
-                        <li>Gained hands-on experience in API integration and consuming RESTful web services</li>
-                        <li>Implemented responsive design principles for cross-device compatibility</li>
-                        <li>Built interactive UI components enhancing user experience</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="timeline-item reveal">
-                <div class="timeline-content">
-                    <div class="timeline-dot"></div>
-                    <h3>Saifee Cyber</h3>
-                    <h4>Backend Developer Intern</h4>
-                    <span class="date">August 2023</span>
-                    <ul>
-                        <li>Learned Python programming and Django web framework fundamentals</li>
-                        <li>Gained insights into backend development architecture and best practices</li>
-                        <li>Worked on database integration using Django ORM</li>
-                        <li>Implemented user authentication and security techniques</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="tl-item">
+          <div class="tl-head">
+            <h3>Front-End Web Development Intern, IBM SkillsBuild</h3><span class="tl-when">[Add dates]</span>
+          </div>
+          <p>Delivered responsive web pages using semantic HTML5, CSS3, and vanilla JavaScript, achieving strong
+            Lighthouse performance and accessibility scores. Completed IBM's front-end development modules covering
+            UI/UX and responsive design.</p>
         </div>
+      </div>
     </section>
 
-    <section id="projects">
-        <div class="section-header reveal">
-            <p class="section-subtitle">What I've Built</p>
-            <h2 class="section-title">Featured <span>Projects</span></h2>
+    <!-- ============ CREDENTIALS ============ -->
+    <section id="credentials">
+      <span class="grommet"></span>
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">Credentials</div>
+        <h2>Education, and the paper to prove it.</h2>
+      </div>
+      <div class="credentials-grid" data-reveal>
+        <div>
+          <h3>Education</h3>
+          <div class="credential-item">
+            <div class="cred-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3L2 8l10 5 10-5-10-5z" />
+                <path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5" />
+              </svg></div>
+            <div>
+              <h4>Diploma in Computer Engineering</h4>
+              <p>Government Polytechnic, Dahod · CGPA 8.29/10 · Expected 2026</p>
+            </div>
+          </div>
+          <div class="credential-item">
+            <div class="cred-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3L2 8l10 5 10-5-10-5z" />
+                <path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5" />
+              </svg></div>
+            <div>
+              <h4>Secondary School Certificate</h4>
+              <p>Burhani English Medium School · 72%</p>
+            </div>
+          </div>
         </div>
-        <div class="projects-grid" id="projectsGrid">
-            <!-- Project 1 -->
-            <div class="project-card" data-index="1">
-                <div class="project-image" style="background: linear-gradient(135deg, #6c5ce7, #a29bfe);">
-                    <i class="fas fa-wallet"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Expense Manager</h3>
-                    <p>A comprehensive Java application to track and manage monthly expenses with secure authentication and cloud storage using Firebase.</p>
-                    <div class="project-tech">
-                        <span>Java</span>
-                        <span>Firebase</span>
-                        <span>Android</span>
-                    </div>
-                    <a href="https://github.com/Taher-Bootwala/Expense_Manager" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
+        <div>
+          <h3>Certifications</h3>
+          <div class="credential-item">
+            <div class="cred-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="5" />
+                <path d="M9 12l-2 8 5-3 5 3-2-8" />
+              </svg></div>
+            <div>
+              <h4>IBM SkillsBuild — Front-End Web Development</h4>
+              <p>Internship certification</p>
             </div>
-
-            <!-- Project 2 -->
-            <div class="project-card" data-index="2">
-                <div class="project-image" style="background: linear-gradient(135deg, #00cec9, #81ecec);">
-                    <i class="fas fa-user-check"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Attendance Management</h3>
-                    <p>A complete attendance management system to track and manage attendance records efficiently with user-friendly interface.</p>
-                    <div class="project-tech">
-                        <span>Web App</span>
-                        <span>Database</span>
-                        <span>CRUD</span>
-                    </div>
-                    <a href="https://github.com/Taher-Bootwala/Attandance-Managment" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
+          </div>
+          <div class="credential-item">
+            <div class="cred-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="5" />
+                <path d="M9 12l-2 8 5-3 5 3-2-8" />
+              </svg></div>
+            <div>
+              <h4>IBM Project Management Fundamentals</h4>
+              <p>Certification</p>
             </div>
-
-            <!-- Project 3 -->
-            <div class="project-card" data-index="3">
-                <div class="project-image" style="background: linear-gradient(135deg, #fd79a8, #e84393);">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Salary Prediction</h3>
-                    <p>Machine learning based web application that predicts employee salaries based on experience, field and other parameters.</p>
-                    <div class="project-tech">
-                        <span>Python</span>
-                        <span>ML</span>
-                        <span>Web App</span>
-                    </div>
-                    <a href="https://github.com/Taher-Bootwala/Salary-Prediction" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
+          </div>
+          <div class="credential-item">
+            <div class="cred-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="5" />
+                <path d="M9 12l-2 8 5-3 5 3-2-8" />
+              </svg></div>
+            <div>
+              <h4>Python &amp; Django Internship Certificate</h4>
+              <p>InfoLabz IT Services</p>
             </div>
-
-            <!-- Project 4 -->
-            <div class="project-card" data-index="4">
-                <div class="project-image" style="background: linear-gradient(135deg, #fdcb6e, #f39c12);">
-                    <i class="fas fa-question-circle"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Quiz Application</h3>
-                    <p>Interactive quiz application with multiple choice questions, score tracking and result reports for educational purposes.</p>
-                    <div class="project-tech">
-                        <span>Java</span>
-                        <span>Android</span>
-                        <span>UI/UX</span>
-                    </div>
-                    <a href="https://github.com/Taher-Bootwala/Quiz" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Project 5 -->
-            <div class="project-card" data-index="5">
-                <div class="project-image" style="background: linear-gradient(135deg, #74b9ff, #0984e3);">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Quiz-Bee App</h3>
-                    <p>Android-based Java language quiz application with MCQs, user-friendly interface and comprehensive result reports.</p>
-                    <div class="project-tech">
-                        <span>Android</span>
-                        <span>Java</span>
-                        <span>XML</span>
-                    </div>
-                    <a href="https://github.com/Taher-Bootwala/Quiz-App" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Project 6 -->
-            <div class="project-card" data-index="6">
-                <div class="project-image" style="background: linear-gradient(135deg, #55a3ff, #003d82);">
-                    <i class="fas fa-phone-alt"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Telephone Booth</h3>
-                    <p>A C programming project implementing telephone booth management functionality with efficient algorithms.</p>
-                    <div class="project-tech">
-                        <span>C</span>
-                        <span>Data Structures</span>
-                        <span>Algorithms</span>
-                    </div>
-                    <a href="https://github.com/Taher-Bootwala/Telephone-Booth-C-" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Project 7 -->
-            <div class="project-card" data-index="7">
-                <div class="project-image" style="background: linear-gradient(135deg, #e17055, #d63031);">
-                    <i class="fab fa-java"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Java Projects</h3>
-                    <p>Collection of Java programming projects demonstrating object-oriented programming concepts and best practices.</p>
-                    <div class="project-tech">
-                        <span>Java</span>
-                        <span>OOP</span>
-                        <span>DSA</span>
-                    </div>
-                    <a href="https://github.com/Taher-Bootwala/Java" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Project 8 -->
-            <div class="project-card" data-index="8">
-                <div class="project-image" style="background: linear-gradient(135deg, #00b894, #00cec9);">
-                    <i class="fas fa-film"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Movie Info Website</h3>
-                    <p>Dynamic movie information website with search functionality, movie details, ratings and responsive design.</p>
-                    <div class="project-tech">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-                        <span>API</span>
-                    </div>
-                    <a href="https://github.com/Taher-Bootwala/Movie-Info-Website" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Project 9 -->
-            <div class="project-card" data-index="9">
-                <div class="project-image" style="background: linear-gradient(135deg, #3776ab, #ffd43b);">
-                    <i class="fab fa-python"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Python Projects</h3>
-                    <p>Repository containing various Python projects and scripts showcasing programming skills and problem-solving abilities.</p>
-                    <div class="project-tech">
-                        <span>Python</span>
-                        <span>Scripting</span>
-                        <span>Automation</span>
-                    </div>
-                    <a href="https://github.com/Taher-Bootwala/Python" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Project 10 -->
-            <div class="project-card" data-index="10">
-                <div class="project-image" style="background: linear-gradient(135deg, #777bb4, #4f5b93);">
-                    <i class="fab fa-php"></i>
-                </div>
-                <div class="project-content">
-                    <h3>PHP Projects</h3>
-                    <p>Collection of PHP web development projects demonstrating server-side programming and database integration skills.</p>
-                    <div class="project-tech">
-                        <span>PHP</span>
-                        <span>MySQL</span>
-                        <span>Backend</span>
-                    </div>
-                    <a href="https://github.com/Taher-Bootwala/PHP" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Project 11 -->
-            <div class="project-card" data-index="11">
-                <div class="project-image" style="background: linear-gradient(135deg, #e44d26, #f16529);">
-                    <i class="fas fa-globe"></i>
-                </div>
-                <div class="project-content">
-                    <h3>WebPage Development</h3>
-                    <p>Collection of web pages and websites built using modern HTML, CSS and JavaScript with responsive design principles.</p>
-                    <div class="project-tech">
-                        <span>HTML5</span>
-                        <span>CSS3</span>
-                        <span>JavaScript</span>
-                    </div>
-                    <a href="https://github.com/Taher-Bootwala/WebPage-Development" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Project 12 - Collaborative -->
-            <div class="project-card" data-index="12">
-                <div class="project-image" style="background: linear-gradient(135deg, #9b59b6, #8e44ad);">
-                    <i class="fas fa-users-cog"></i>
-                </div>
-                <div class="project-content">
-                    <h3>WorkHive HRMS</h3>
-                    <p>Collaborative HR Management System project for managing employee data, attendance, and organizational workflows.</p>
-                    <div class="project-tech">
-                        <span>Collaborative</span>
-                        <span>HRMS</span>
-                        <span>Full Stack</span>
-                    </div>
-                    <a href="https://github.com/YusufGunderwala/WorkHive-hrms" target="_blank" class="project-link">
-                        <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
+          </div>
         </div>
-
-        <div class="view-more-container reveal">
-            <p class="project-counter">Showing <span id="visibleCount">3</span> of <span id="totalCount">12</span> projects</p>
-            <button class="view-more-btn" id="viewMoreBtn" onclick="toggleProjects()">
-                <span id="btnText">View More Projects</span>
-                <i class="fas fa-chevron-down"></i>
-            </button>
-        </div>
+      </div>
     </section>
 
-    <section id="education">
-        <div class="section-header reveal">
-            <p class="section-subtitle">My Academic Journey</p>
-            <h2 class="section-title"><span>Education</span></h2>
-        </div>
-        <div class="education-cards">
-            <div class="education-card reveal">
-                <div class="education-icon">
-                    <i class="fas fa-university"></i>
-                </div>
-                <span class="year">Completed</span>
-                <h3>Diploma in Computer Engineering</h3>
-                <h4>Government Polytechnic College, Dahod</h4>
-                <span class="grade">CGPA: 8.70</span>
-            </div>
-            <div class="education-card reveal">
-                <div class="education-icon">
-                    <i class="fas fa-school"></i>
-                </div>
-                <span class="year">2018 - 2022</span>
-                <h3>Higher Secondary Education</h3>
-                <h4>Burhani English High School, Dahod</h4>
-                <span class="grade">SSC: 72%</span>
-            </div>
-            <div class="education-card reveal">
-                <div class="education-icon">
-                    <i class="fas fa-book-reader"></i>
-                </div>
-                <span class="year">2010 - 2018</span>
-                <h3>Primary & Secondary Education</h3>
-                <h4>Jamali English School, Dahod</h4>
-                <span class="grade">Foundation Years</span>
-            </div>
-        </div>
-    </section>
-
+    <!-- ============ CONTACT ============ -->
     <section id="contact">
-        <div class="section-header reveal">
-            <p class="section-subtitle">Get In Touch</p>
-            <h2 class="section-title">Contact <span>Me</span></h2>
+      <div class="contact-panel" data-reveal>
+        <div class="eyebrow" style="color:#EFC373;">Sign the ledger</div>
+        <h2>Have something worth building? Let's talk it through.</h2>
+        <p>I'm currently open to full-time roles and internships. Email is the fastest way to reach me — I read
+          everything myself.</p>
+        <div class="contact-links">
+          <a href="mailto:bootwalataher2@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.7" stroke-linecap="round">
+              <path d="M4 6h16v12H4z" />
+              <path d="M4 7l8 6 8-6" />
+            </svg>bootwalataher2@gmail.com</a>
+          <a href="tel:+919484514813"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" />
+            </svg>+91 94845 14813</a>
+          <a href="https://github.com/Taher-Bootwala/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="1.7">
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9c0-1.1.4-1.8 1-2.3-3.3-.4-6.8-1.6-6.8-7.3 0-1.6.6-3 1.5-4-.2-.4-.7-2 .1-4 0 0 1.3-.4 4.2 1.5a14.7 14.7 0 018 0c2.9-2 4.2-1.5 4.2-1.5.8 2 .3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.7-3.5 6.9-6.8 7.3.5.5 1 1.3 1 2.7V21"
+                transform="translate(-2 0) scale(0.83)" />
+            </svg>GitHub</a>
+          <a href="https://www.linkedin.com/in/gecdhd-comp-taher-boot/" target="_blank" rel="noopener"><svg
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 014 0v4M11 13v4" />
+            </svg>LinkedIn</a>
+          <a href="Taher_Bootwala_Resume_Revised.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+              <path d="M12 3v13m0 0l-4-4m4 4l4-4" />
+              <path d="M4 17v3a1 1 0 001 1h14a1 1 0 001-1v-3" />
+            </svg>Resume</a>
         </div>
-        <div class="contact-wrapper">
-            <div class="contact-info reveal">
-                <h3>Let's Work Together</h3>
-                <p>
-                    I'm currently looking for new opportunities and would love to hear from you. 
-                    Whether you have a question, a project idea, or just want to say hi, feel free 
-                    to reach out!
-                </p>
-
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <a href="mailto:bootwalataher2@gmail.com">bootwalataher2@gmail.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <a href="tel:+919484514813">+91 94845 14813</a>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Dahod, Gujarat, India</span>
-                    </div>
-                </div>
-                <div class="contact-socials">
-                    <a href="https://github.com/Taher-Bootwala?tab=repositories" target="_blank" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/taher-bootwala-048b8b309/" target="_blank" title="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="mailto:bootwalataher2@gmail.com" title="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="contact-form reveal">
-                <!-- 
-                    IMPORTANT: Replace YOUR_FORMSPREE_ID with your actual Formspree form ID
-                    Example: https://formspree.io/f/xwkgjqab
-                -->
-                <form id="contactForm" action="https://formspree.io/f/mvzzppqj" method="POST">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Your Email</label>
-                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" placeholder="Enter subject">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
-                    </div>
-                    <!-- Hidden field for spam protection -->
-                    <input type="text" name="_gotcha" style="display:none">
-                    <button type="submit" class="form-btn" id="submitBtn">
-                        <span class="btn-text"><i class="fas fa-paper-plane"></i> Send Message</span>
-                        <span class="spinner"></span>
-                    </button>
-                </form>
-            </div>
-        </div>
+      </div>
     </section>
 
     <footer>
-        <p>© 2024 <span>Taher Bootwala</span>. All Rights Reserved.</p>
+      <span>Design &amp; build: Taher Bootwala · Dahod, Gujarat · 2026</span>
+      <span><a href="https://github.com/Taher-Bootwala" target="_blank"
+          rel="noopener">github.com/Taher-Bootwala</a></span>
     </footer>
 
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage">Message sent successfully!</span>
-    </div>
-    <script src="script.js"></script>
+  </main>
+
+  <script>
+    /* ── Scroll progress bar (GPU-composited via scaleX) ── */
+    const progressBar = document.createElement('div');
+    Object.assign(progressBar.style, {
+      position: 'fixed', top: '0', left: '0', height: '2px', width: '100%',
+      background: 'linear-gradient(90deg,#6FBBA0,#C9973F,#DD7E5C)',
+      zIndex: '999', pointerEvents: 'none',
+      borderRadius: '0 2px 2px 0',
+      transformOrigin: 'left center',
+      transform: 'scaleX(0)',
+      willChange: 'transform'
+    });
+    document.body.appendChild(progressBar);
+    let cachedDocH = document.documentElement.scrollHeight - window.innerHeight;
+
+    /* ── Eased smooth scroll ── */
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function smoothScrollTo(targetY, duration) {
+      const startY = window.scrollY;
+      const distance = targetY - startY;
+      let startTime = null;
+      if (Math.abs(distance) < 1) return;
+      function step(ts) {
+        if (!startTime) startTime = ts;
+        const elapsed = ts - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = easeInOutCubic(progress);
+        window.scrollTo(0, startY + distance * eased);
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    /* intercept all anchor href="#..." clicks */
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const id = link.getAttribute('href').slice(1);
+        const target = id ? document.getElementById(id) : document.documentElement;
+        if (!target) return;
+        e.preventDefault();
+        const offset = 72; /* nav height */
+        const targetY = Math.max(0, target.getBoundingClientRect().top + window.scrollY - offset);
+        smoothScrollTo(targetY, 700);
+      });
+    });
+
+    /* ── Nav background on scroll + progress bar update ── */
+    const navInner = document.getElementById('navInner');
+    const galaxyCanvas = document.getElementById('galaxyCanvas');
+    const skillsSection = document.getElementById('skills');
+    let cachedSkillsTop = skillsSection ? skillsSection.offsetTop : 1000;
+
+    const onScroll = () => {
+      const scrolled = window.scrollY;
+      if (scrolled > 40) navInner.classList.add('scrolled');
+      else navInner.classList.remove('scrolled');
+      /* PERF: scaleX is GPU-composited, no layout cost; cachedDocH avoids forced layout read */
+      progressBar.style.transform = cachedDocH > 0 ? 'scaleX(' + (scrolled / cachedDocH) + ')' : 'scaleX(0)';
+
+      /* ── Galaxy scroll scale & fade-out ── */
+      if (galaxyCanvas && cachedSkillsTop > 0) {
+        const progress = Math.min(Math.max(scrolled / cachedSkillsTop, 0), 1);
+        const scale = 1.0 + progress * 1.5; // grows to 2.5x size
+        const opacity = 1.0 - progress;      // fades to 0
+        galaxyCanvas.style.transform = 'scale(' + scale + ')';
+        galaxyCanvas.style.opacity = opacity;
+
+        if (progress >= 1) {
+          galaxyCanvas.style.visibility = 'hidden';
+        } else {
+          galaxyCanvas.style.visibility = 'visible';
+        }
+      }
+    };
+    document.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => {
+      cachedDocH = document.documentElement.scrollHeight - window.innerHeight;
+      if (skillsSection) cachedSkillsTop = skillsSection.offsetTop;
+    }, { passive: true });
+    onScroll();
+
+    /* ── Mobile menu toggle ── */
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const toggleMenu = () => {
+      const isOpen = navLinks.classList.toggle('is-open');
+      menuToggle.setAttribute('aria-expanded', isOpen);
+    };
+    menuToggle.addEventListener('click', toggleMenu);
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('is-open')) {
+          navLinks.classList.remove('is-open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    /* ── Close mobile menu when clicking outside ── */
+    document.addEventListener('click', (e) => {
+      if (navLinks.classList.contains('is-open') &&
+        !navLinks.contains(e.target) &&
+        !menuToggle.contains(e.target)) {
+        navLinks.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    /* ── Scroll reveal ── */
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealEls = document.querySelectorAll('[data-reveal], .entry');
+    if (reduceMotion) {
+      revealEls.forEach(el => el.classList.add('is-visible'));
+    } else if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach(el => io.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add('is-visible'));
+    }
+    /* ===================== SMOOTH GALAXY ANIMATION (hybrid pre-baked model) ===================== */
+    (function () {
+      'use strict';
+
+      var cv = document.getElementById('galaxyCanvas');
+      if (!cv) return;
+      var ctx = cv.getContext('2d');
+      var PI2 = Math.PI * 2;
+
+      /* ---------- colour palettes ---------- */
+      var CORE_PAL = [[255, 255, 255], [255, 248, 228], [255, 228, 195], [255, 200, 175]];
+      var ARM_PAL = [[175, 95, 255], [125, 95, 255], [85, 155, 255], [65, 200, 255],
+      [200, 135, 255], [255, 220, 205], [155, 200, 255], [220, 155, 255]];
+      var DUST_PAL = [[190, 205, 255], [255, 255, 255], [175, 175, 255], [130, 175, 255]];
+      var NEB_PAL = [[105, 55, 210], [65, 85, 220], [135, 65, 245], [185, 85, 210], [50, 125, 245], [205, 115, 245]];
+      var ALL_PAL = CORE_PAL.concat(ARM_PAL).concat(DUST_PAL);
+
+      /* ---------- config ---------- */
+      var CFG = {
+        arms: 4, armN: 450, coreN: 250, dustN: 300, nebN: 14, brtN: 8,
+        twist: 3.9, spread: 0.24, coreR: 0.09, galR: 0.55,
+        rpm: 0.000085,   /* galaxy rotation speed rad/ms */
+        twk: 0.00130     /* twinkle speed */
+      };
+
+      /* ---------- state ---------- */
+      var gx, gy, gr, W, H;
+      var time = 0, lastT = null, animId = 0;
+      var stars = [], nebs = [], brts = [], twinklers = [];
+      var sprites = {};
+      var coreOff = null;      /* static core glows */
+      var galaxyOff = null;    /* PERF: flat offscreen canvas holding all dense stars and nebulae */
+      var galaxyOffSize = 0;
+      var isVisible = true;
+
+      function rnd(a, b) { return a + Math.random() * (b - a); }
+      function ri(a, b) { return Math.floor(rnd(a, b)); }
+      function pick(a) { return a[ri(0, a.length)]; }
+
+      /* -- build a glow sprite once, reused every frame -- */
+      function mkGlow(sz, r, g, b) {
+        var R = Math.ceil(sz * 3.8) + 1, D = R * 2;
+        var oc = document.createElement('canvas'); oc.width = oc.height = D;
+        var cx = oc.getContext('2d');
+        var gr2 = cx.createRadialGradient(R, R, 0, R, R, R);
+        gr2.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',1)');
+        gr2.addColorStop(0.3, 'rgba(' + r + ',' + g + ',' + b + ',0.75)');
+        gr2.addColorStop(0.6, 'rgba(' + r + ',' + g + ',' + b + ',0.3)');
+        gr2.addColorStop(1, 'rgba(' + r + ',' + g + ',' + b + ',0)');
+        cx.fillStyle = gr2; cx.fillRect(0, 0, D, D);
+        cx.beginPath(); cx.arc(R, R, sz * 0.38, 0, PI2);
+        cx.fillStyle = 'rgba(255,255,255,0.92)'; cx.fill();
+        return { c: oc, R: R };
+      }
+
+      /* -- 4-point spike for bright accent stars -- */
+      function mkSpike(sz, r, g, b) {
+        var spk = sz * 8, pad = Math.ceil(spk + sz * 4) + 1, D = pad * 2;
+        var oc = document.createElement('canvas'); oc.width = oc.height = D;
+        var cx = oc.getContext('2d');
+        cx.globalAlpha = 0.70;
+        for (var i = 0; i < 2; i++) {
+          cx.save(); cx.translate(pad, pad); cx.rotate(i * Math.PI * 0.25);
+          var sg = cx.createLinearGradient(-spk, 0, spk, 0);
+          sg.addColorStop(0, 'rgba(255,255,255,0)');
+          sg.addColorStop(0.5, 'rgba(' + r + ',' + g + ',' + b + ',0.95)');
+          sg.addColorStop(1, 'rgba(255,255,255,0)');
+          cx.fillStyle = sg; cx.fillRect(-spk, -sz * 0.18, spk * 2, sz * 0.36); cx.restore();
+        }
+        cx.globalAlpha = 1;
+        var grd = cx.createRadialGradient(pad, pad, 0, pad, pad, sz * 3.8);
+        grd.addColorStop(0, 'rgba(255,255,255,0.96)');
+        grd.addColorStop(0.4, 'rgba(' + r + ',' + g + ',' + b + ',0.55)');
+        grd.addColorStop(1, 'rgba(0,0,0,0)');
+        cx.beginPath(); cx.arc(pad, pad, sz * 3.8, 0, PI2);
+        cx.fillStyle = grd; cx.fill();
+        cx.beginPath(); cx.arc(pad, pad, sz * 0.5, 0, PI2);
+        cx.fillStyle = 'rgba(255,255,255,1)'; cx.fill();
+        return { c: oc, pad: pad };
+      }
+
+      /* -- build sprite cache -- */
+      function buildSprites() {
+        sprites = {};
+        var SZ = [0.5, 1, 1.8, 2.8, 3.5];
+        ALL_PAL.forEach(function (col, ci) {
+          SZ.forEach(function (sz) {
+            sprites['g' + ci + '_' + sz] = mkGlow(sz, col[0], col[1], col[2]);
+          });
+        });
+        CORE_PAL.forEach(function (col, ci) {
+          sprites['sp' + ci + '_4'] = mkSpike(4, col[0], col[1], col[2]);
+          sprites['sp' + ci + '_6'] = mkSpike(6, col[0], col[1], col[2]);
+        });
+        sprites['spW_4'] = mkSpike(4, 255, 255, 255);
+        sprites['spW_6'] = mkSpike(6, 255, 255, 255);
+      }
+
+      function szSnap(s) { return s < 0.75 ? 0.5 : s < 1.35 ? 1 : s < 2.2 ? 1.8 : s < 3.1 ? 2.8 : 3.5; }
+      function gk(col, sz) { var ci = ALL_PAL.indexOf(col); return 'g' + (ci < 0 ? 0 : ci) + '_' + szSnap(sz); }
+
+      /* -- build particle data -- */
+      function buildParticles() {
+        stars = []; nebs = []; brts = []; twinklers = [];
+
+        /* Core stars */
+        for (var i = 0; i < CFG.coreN; i++) {
+          var d = Math.pow(Math.random(), 0.3) * CFG.coreR, cen = d < CFG.coreR * 0.3;
+          var col = cen ? pick(CORE_PAL) : (Math.random() < 0.68 ? pick(CORE_PAL) : pick(ARM_PAL));
+          var sz = cen ? rnd(1.5, 3.5) : rnd(0.5, 1.8);
+          stars.push({ a: rnd(0, PI2), d: d, sz: sz, col: col, key: gk(col, sz), rm: 1.65 });
+        }
+
+        /* Spiral arm stars & nebulae */
+        for (var arm = 0; arm < CFG.arms; arm++) {
+          var off = (arm / CFG.arms) * PI2;
+          for (var j = 0; j < CFG.armN; j++) {
+            var t = Math.pow(Math.random(), 0.6);
+            var d2 = CFG.coreR + t * (1 - CFG.coreR);
+            var ang = off + d2 * CFG.twist + rnd(-CFG.spread, CFG.spread) * d2;
+            var col2 = t < 0.28 ? (Math.random() < 0.5 ? pick(CORE_PAL) : pick(ARM_PAL)) : pick(ARM_PAL);
+            var sz2 = rnd(0.5, t < 0.28 ? 2.8 : 1.7);
+            stars.push({ a: ang, d: d2, sz: sz2, col: col2, key: gk(col2, sz2), rm: 1.0 });
+          }
+          for (var n = 0; n < CFG.nebN; n++) {
+            var t3 = rnd(0.07, 0.93), d3 = CFG.coreR + t3 * (1 - CFG.coreR);
+            var a3 = off + d3 * CFG.twist + rnd(-CFG.spread * 0.65, CFG.spread * 0.65) * d3;
+            var nc = pick(NEB_PAL);
+            nebs.push({ a: a3, d: d3, rad: rnd(0.065, 0.17) * (1 - t3 * 0.35), al: rnd(0.04, 0.11), r: nc[0], g: nc[1], b: nc[2] });
+          }
+        }
+
+        /* Background dust stars */
+        for (var k = 0; k < CFG.dustN; k++) {
+          var col3 = pick(DUST_PAL), sz3 = rnd(0.2, 1.0);
+          stars.push({ a: rnd(0, PI2), d: rnd(0, 1.35), sz: sz3, col: col3, key: gk(col3, sz3), rm: 0.60 });
+        }
+
+        /* Bright twinkling accent stars (rendered dynamically at 60 FPS) */
+        for (var b = 0; b < CFG.brtN; b++) {
+          var inA = Math.random() < 0.45, ba, bd;
+          if (inA) {
+            var ai = ri(0, CFG.arms), ao = (ai / CFG.arms) * PI2;
+            bd = CFG.coreR + rnd(0.2, 0.85) * (1 - CFG.coreR);
+            ba = ao + bd * CFG.twist + rnd(-0.14, 0.14);
+          } else { ba = rnd(0, PI2); bd = rnd(0.2, 1.2); }
+          var isW = Math.random() < 0.55, bsz = Math.random() < 0.5 ? 4 : 6, bci = ri(0, CORE_PAL.length);
+          brts.push({ a: ba, d: bd, key: isW ? ('spW_' + bsz) : ('sp' + bci + '_' + bsz), ph: rnd(0, PI2), sp: rnd(0.3, 0.8) });
+        }
+
+        /* A small subset of ordinary stars that twinkle dynamically to create visual activity */
+        for (var t = 0; t < 35; t++) {
+          var colT = Math.random() < 0.4 ? pick(CORE_PAL) : pick(ARM_PAL);
+          var szT = rnd(1.0, 2.5);
+          twinklers.push({
+            a: rnd(0, PI2), d: rnd(0.05, 1.15), key: gk(colT, szT),
+            rm: Math.random() < 0.3 ? 1.65 : 1.0, ph: rnd(0, PI2), sp: rnd(0.6, 1.8)
+          });
+        }
+      }
+
+      /* -- PERF: bake static core glows -- */
+      function bakeCore() {
+        coreOff = document.createElement('canvas');
+        coreOff.width = W; coreOff.height = H;
+        var cc = coreOff.getContext('2d');
+        var g;
+        g = cc.createRadialGradient(gx, gy, 0, gx, gy, gr * 0.85);
+        g.addColorStop(0, 'rgba(85,105,255,0.13)');
+        g.addColorStop(0.55, 'rgba(65,65,195,0.04)');
+        g.addColorStop(1, 'rgba(0,0,0,0)');
+        cc.beginPath(); cc.arc(gx, gy, gr * 0.85, 0, PI2); cc.fillStyle = g; cc.fill();
+        g = cc.createRadialGradient(gx, gy, 0, gx, gy, gr * 0.42);
+        g.addColorStop(0, 'rgba(255,205,185,0.50)');
+        g.addColorStop(0.22, 'rgba(225,130,255,0.26)');
+        g.addColorStop(0.58, 'rgba(100,75,215,0.09)');
+        g.addColorStop(1, 'rgba(0,0,0,0)');
+        cc.beginPath(); cc.arc(gx, gy, gr * 0.42, 0, PI2); cc.fillStyle = g; cc.fill();
+        g = cc.createRadialGradient(gx, gy, 0, gx, gy, gr * 0.145);
+        g.addColorStop(0, 'rgba(255,255,255,0.98)');
+        g.addColorStop(0.28, 'rgba(255,238,210,0.78)');
+        g.addColorStop(0.62, 'rgba(255,185,165,0.32)');
+        g.addColorStop(1, 'rgba(0,0,0,0)');
+        cc.beginPath(); cc.arc(gx, gy, gr * 0.145, 0, PI2); cc.fillStyle = g; cc.fill();
+      }
+
+      /* -- PERF: Bake the entire rotating galaxy (stars & nebulae) onto one offscreen canvas -- */
+      function bakeGalaxy() {
+        galaxyOffSize = Math.ceil(gr * 2.6);
+        galaxyOff = document.createElement('canvas');
+        galaxyOff.width = galaxyOff.height = galaxyOffSize;
+        var gc = galaxyOff.getContext('2d');
+        var cx = galaxyOffSize / 2;
+        var cy = galaxyOffSize / 2;
+
+        /* 1. Draw nebulae onto offscreen galaxy canvas */
+        nebs.forEach(function (nb) {
+          var r2 = nb.d * gr;
+          var nx = cx + Math.cos(nb.a) * r2;
+          var ny = cy + Math.sin(nb.a) * r2;
+          var NR = nb.rad * gr;
+          var g = gc.createRadialGradient(nx, ny, 0, nx, ny, NR);
+          g.addColorStop(0, 'rgba(' + nb.r + ',' + nb.g + ',' + nb.b + ',' + nb.al + ')');
+          g.addColorStop(0.5, 'rgba(' + nb.r + ',' + nb.g + ',' + nb.b + ',' + (nb.al * 0.45) + ')');
+          g.addColorStop(1, 'rgba(' + nb.r + ',' + nb.g + ',' + nb.b + ',0)');
+          gc.beginPath(); gc.arc(nx, ny, NR, 0, PI2); gc.fillStyle = g; gc.fill();
+        });
+
+        /* 2. Draw all 1000+ stars onto offscreen galaxy canvas */
+        stars.forEach(function (s) {
+          var r2 = s.d * gr;
+          var sx = cx + Math.cos(s.a) * r2;
+          var sy = cy + Math.sin(s.a) * r2;
+          var sp = sprites[s.key]; if (!sp) return;
+          gc.drawImage(sp.c, sx - sp.R, sy - sp.R);
+        });
+      }
+
+      /* -- resize canvas -- */
+      function resize() {
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W = window.innerWidth; H = window.innerHeight;
+        cv.width = W * dpr; cv.height = H * dpr;
+        cv.style.width = W + 'px'; cv.style.height = H + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        gx = W * 0.50; // horizontally centered
+        gy = H * 0.44; // vertically centered relative to viewport/hero
+        gr = Math.min(W, H) * 0.55; // restore original majestic size scaling
+      }
+
+      /* -- main render loop -- */
+      function draw(ts) {
+        if (!isVisible || cv.style.visibility === 'hidden') { animId = requestAnimationFrame(draw); return; }
+
+        if (lastT === null) lastT = ts;
+        var dt = Math.min(ts - lastT, 48); lastT = ts; time += dt;
+
+        ctx.clearRect(0, 0, W, H);
+
+        var rot = time * CFG.rpm;
+        var fy = 0.44; // Y perspective tilt
+
+        /* 1 -- static core glow: single drawImage call */
+        if (coreOff) ctx.drawImage(coreOff, 0, 0);
+
+        /* 2 -- rotating galaxy (nebulae + all arms): single drawImage call with rotate & scale! */
+        if (galaxyOff) {
+          ctx.save();
+          ctx.translate(gx, gy);
+          ctx.scale(1, fy); // Apply perspective tilt
+          ctx.rotate(rot);  // Apply rotation
+          ctx.drawImage(galaxyOff, -galaxyOffSize / 2, -galaxyOffSize / 2);
+          ctx.restore();
+        }
+
+        /* 3 -- select few twinkling stars to maintain dynamic sparkling illusion */
+        for (var i = 0; i < twinklers.length; i++) {
+          var s = twinklers[i];
+          var sa = s.a + rot * s.rm, sr = s.d * gr;
+          var sx = gx + Math.cos(sa) * sr, sy = gy + Math.sin(sa) * sr * fy;
+          var sp = sprites[s.key]; if (!sp) continue;
+          var tw = 0.38 + 0.62 * ((Math.sin(time * CFG.twk * s.sp + s.ph) + 1) * 0.5);
+          ctx.globalAlpha = tw;
+          ctx.drawImage(sp.c, sx - sp.R, sy - sp.R);
+        }
+
+        /* 4 -- bright spike accent stars */
+        ctx.globalAlpha = 1.0;
+        for (var j = 0, jl = brts.length; j < jl; j++) {
+          var b = brts[j], ba = b.a + rot * 0.75, br = b.d * gr;
+          var bx = gx + Math.cos(ba) * br, by = gy + Math.sin(ba) * br * fy;
+          var bsp = sprites[b.key]; if (!bsp) continue;
+          var btw = 0.50 + 0.50 * ((Math.sin(time * CFG.twk * b.sp + b.ph) + 1) * 0.5);
+          ctx.globalAlpha = btw;
+          ctx.drawImage(bsp.c, bx - bsp.pad, by - bsp.pad);
+        }
+
+        ctx.globalAlpha = 1;
+        animId = requestAnimationFrame(draw);
+      }
+
+      /* -- init -- */
+      function init() {
+        resize(); buildSprites(); buildParticles(); bakeCore(); bakeGalaxy();
+        if (animId) cancelAnimationFrame(animId);
+        lastT = null; animId = requestAnimationFrame(draw);
+      }
+
+      if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) {
+        resize(); buildSprites(); buildParticles(); bakeCore(); bakeGalaxy();
+        time = 600; lastT = 600;
+        requestAnimationFrame(function (ts) { draw(ts); cancelAnimationFrame(animId); });
+      } else { init(); }
+
+      /* PERF: pause animation when hero is scrolled out of view */
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          isVisible = entries[0].isIntersecting;
+          if (isVisible && lastT !== null) lastT = null; /* reset dt so no time jump */
+        }, { threshold: 0 }).observe(cv.parentElement);
+      }
+
+      if ('ResizeObserver' in window) {
+        var resizeTimer;
+        new ResizeObserver(function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function () { init(); }, 100);
+        }).observe(cv.parentElement);
+      } else { window.addEventListener('resize', function () { init(); }, { passive: true }); }
+    })();
+
+  </script>
+
 </body>
+
 </html>
